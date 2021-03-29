@@ -22,121 +22,145 @@ const message = {
     takeoff: {
         'ja': '離陸する',
         'ja-Hira': 'りりくする',
+        'zh-cn': '起飞',
         'en': 'takeoff'
     },
     land: {
         'ja': '着陸する',
         'ja-Hira': 'ちゃくりくする',
+        'zh-cn': '降落',
         'en': 'land'
     },
     up: {
         'ja': '上に [X]cm 上がる',
         'ja-Hira': 'うえに [X] センチあがる',
+        'zh-cn': '向上 [X] 厘米',
         'en': 'up [X] cm'
     },
     down: {
         'ja': '下に [X]cm 下がる',
         'ja-Hira': 'したに [X] センチさがる',
+        'zh-cn': '向下 [X] 厘米',
         'en': 'down [X] cm'
     },
     left: {
         'ja': '左に [X]cm 動く',
         'ja-Hira': 'ひだりに [X] センチうごく',
+        'zh-cn': '向左 [X] 厘米',
         'en': 'move left [X] cm'
     },
     right: {
         'ja': '右に [X]cm 動く',
         'ja-Hira': 'みぎに [X] センチうごく',
+        'zh-cn': '向右 [X] 厘米',
         'en': 'move right [X] cm'
     },
     forward: {
         'ja': '前に [X]cm 進む',
         'ja-Hira': 'まえに [X] センチすすむ',
+        'zh-cn': '前进 [X] 厘米',
         'en': 'move forward [X] cm'
     },
     back: {
         'ja': '後ろに [X]cm 下がる',
         'ja-Hira': 'うしろに [X] センチさがる',
+        'zh-cn': '后退 [X] 厘米',
         'en': 'move back [X] cm'
     },
     cw: {
         'ja': '[X] 度右に回る',
         'ja-Hira': '[X] どみぎにまわる',
+        'zh-cn': '向右旋转 [X] 度',
         'en': 'rotate [X] degrees right'
     },
     ccw: {
         'ja': '[X] 度左に回る',
         'ja-Hira': '[X] どひだりにまわる',
+        'zh-cn': '向左旋转 [X] 度',
         'en': 'rotate [X] degrees left'
     },
     pitch: {
         'ja': 'ピッチ',
         'ja-Hira': 'ピッチ',
+        'zh-cn': '俯仰轴姿态角(°)',
         'en': 'pitch'
     },
     roll: {
         'ja': 'ロール',
         'ja-Hira': 'ロール',
+        'zh-cn': '横滚轴姿态角(°)',
         'en': 'roll'
     },
     yaw: {
         'ja': 'ヨー',
         'ja-Hira': 'ヨー',
+        'zh-cn': '平移轴姿态角(°)',
         'en': 'yaw'
     },
     vgx: {
         'ja': 'x方向の速度',
         'ja-Hira': 'xほうこうのはやさ',
+        'zh-cn': 'X轴速度(厘米/秒)',
         'en': 'speed x'
     },
     vgy: {
         'ja': 'y方向の速度',
         'ja-Hira': 'yほうこうのはやさ',
+        'zh-cn': 'Y轴速度(厘米/秒)',
         'en': 'speed y'
     },
     vgz: {
         'ja': 'z方向の速度',
         'ja-Hira': 'zほうこうのはやさ',
+        'zh-cn': 'Z轴速度(厘米/秒)',
         'en': 'speed z'
     },
     tof: {
         'ja': '地面からの高度',
         'ja-Hira': 'じめんからのたかさ',
+        'zh-cn': 'TOF高度(厘米)',
         'en': 'height from ground'
     },
     height: {
         'ja': '離陸した場所からの高度',
         'ja-Hira': 'りりくしたばしょからのたかさ',
+        'zh-cn': '相对高度(厘米)',
         'en': 'height from takeoff point'
     },
     bat: {
         'ja': 'バッテリー残量',
         'ja-Hira': 'バッテリーざんりょう',
+        'zh-cn': '电池电量(%)',
         'en': 'battery remaining'
     },
     baro: {
         'ja': '気圧計による高さ',
         'ja-Hira': 'きあつけいによるたかさ',
+        'zh-cn': '气压计高度(厘米)',
         'en': 'height by barometer'
     },
     time: {
         'ja': '飛行時間',
         'ja-Hira': 'ひこうじかん',
+        'zh-cn': '飞行时间',
         'en': 'flying time'
     },
     agx: {
         'ja': 'x方向の加速度',
         'ja-Hira': 'xほうこうのかそくど',
+        'zh-cn': 'X轴加速度(0.001g)',
         'en': 'acceleration x'
     },
     agy: {
         'ja': 'y方向の加速度',
         'ja-Hira': 'yほうこうのかそくど',
+        'zh-cn': 'Y轴加速度(0.001g)',
         'en': 'acceleration y'
     },
     agz: {
         'ja': 'z方向の加速度',
         'ja-Hira': 'zほうこうのかそくど',
+        'zh-cn': 'Z轴加速度(0.001g)',
         'en': 'acceleration z'
     }
 
@@ -162,7 +186,7 @@ class Scratch3Tello {
      * @returns {object} metadata for this extension and its blocks.
      */
     getInfo () {
-        if (formatMessage.setup().locale === 'ja' || formatMessage.setup().locale === 'ja-Hira') {
+        if (formatMessage.setup().locale === 'ja' || formatMessage.setup().locale === 'ja-Hira' || formatMessage.setup().locale === 'zh-cn') {
             this.locale = formatMessage.setup().locale;
         } else {
             this.locale = 'en';

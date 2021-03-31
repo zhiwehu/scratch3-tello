@@ -25,7 +25,7 @@ You can download the binary [here](https://github.com/kebhr/scratch3-tello/relea
 ```bash
 $ mkdir scratch3-tello
 $ cd scratch3-tello
-$ wget https://raw.githubusercontent.com/kebhr/scratch3-tello/master/build.sh
+$ wget https://raw.githubusercontent.com/zhiwehu/scratch3-tello/master/build.sh
 $ chmod +x build.sh
 $ ./build.sh
 ```

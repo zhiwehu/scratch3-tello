@@ -1,6 +1,7 @@
 git clone --depth 1 https://github.com/LLK/scratch-vm.git
 git clone --depth 1 --branch scratch-desktop https://github.com/LLK/scratch-gui.git
 git clone --depth 1 --branch v3.20.1 https://github.com/LLK/scratch-desktop.git
+#git clone --depth 1 --branch v3.10.4 https://github.com/LLK/scratch-desktop.git
 cd scratch-vm
 npm install
 npm link
@@ -17,3 +18,5 @@ cd ../../../
 git clone https://github.com/zhiwehu/scratch3-tello
 cp -r scratch3-tello/. ./
 rm -rf scratch3-tello/
+cd scratch3-desktop
+npm run dist:dir

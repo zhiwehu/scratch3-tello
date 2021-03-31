@@ -31,6 +31,12 @@ const message = {
         'zh-cn': '降落',
         'en': 'land'
     },
+    emergency: {
+        'ja': '紧急停机',
+        'ja-Hira': '紧急停机',
+        'zh-cn': '紧急停机',
+        'en': 'emergency'
+    },
     up: {
         'ja': '上に [X]cm 上がる',
         'ja-Hira': 'うえに [X] センチあがる',
@@ -78,6 +84,36 @@ const message = {
         'ja-Hira': '[X] どひだりにまわる',
         'zh-cn': '向左旋转 [X] 度',
         'en': 'rotate [X] degrees left'
+    },
+    flip: {
+        'ja': '向 [DIRECTION] 翻滚',
+        'ja-Hira': '向 [DIRECTION] 翻滚',
+        'zh-cn': '向 [DIRECTION] 翻滚',
+        'en': 'flip to [DIRECTION]'
+    },
+    flip_front: {
+        'ja': '前',
+        'ja-Hira': '前',
+        'zh-cn': '前',
+        'en': 'front'
+    },
+    flip_back: {
+        'ja': '后',
+        'ja-Hira': '后',
+        'zh-cn': '后',
+        'en': 'back'
+    },
+    flip_left: {
+        'ja': '左',
+        'ja-Hira': '左',
+        'zh-cn': '左',
+        'en': 'left'
+    },
+    flip_right: {
+        'ja': '右',
+        'ja-Hira': '右',
+        'zh-cn': '右',
+        'en': 'right'
     },
     pitch: {
         'ja': 'ピッチ',
@@ -166,6 +202,13 @@ const message = {
 
 };
 
+const FilpDirection = {
+    FRONT: 'f',
+    BACK: 'b',
+    LEFT: 'l',
+    RIGHT: 'r',
+};
+
 /**
  * Class for the Tello
  * @param {Runtime} runtime - the runtime instantiating this block package.
@@ -208,6 +251,12 @@ class Scratch3Tello {
                     text: message.land[this.locale],
                     blockType: BlockType.COMMAND
                 },
+                {
+                    opcode: 'emergency',
+                    text: message.emergency[this.locale],
+                    blockType: BlockType.COMMAND
+                },
+
                 '---',
                 {
                     opcode: 'up',
@@ -297,6 +346,18 @@ class Scratch3Tello {
                         }
                     }
                 },
+                {
+                    opcode: 'flip',
+                    text: message.flip[this.locale],
+                    blockType: BlockType.COMMAND,
+                    arguments: {
+                        DIRECTION: {
+                            type: ArgumentType.STRING,
+                            menu: 'tiltDirection',
+                            defaultValue: FilpDirection.FRONT
+                        }
+                    }
+                },
                 '---',
                 {
                     opcode: 'pitch',
@@ -370,6 +431,10 @@ class Scratch3Tello {
                 }
             ],
             menus: {
+                tiltDirection: {
+                    acceptReporters: true,
+                    items: this.TILT_DIRECTION_MENU
+                }
             }
         };
     }
@@ -388,6 +453,10 @@ class Scratch3Tello {
 
     land () {
         telloProcessor.send('land');
+    }
+
+    emergency () {
+        telloProcessor.send('emergency');
     }
 
     up (args) {
@@ -420,6 +489,10 @@ class Scratch3Tello {
 
     ccw (args) {
         telloProcessor.send(`ccw ${Cast.toString(args.X)}`);
+    }
+
+    flip (args) {
+        telloProcessor.send(`flip ${Cast.toString(args.X)}`);
     }
 
     pitch () {
@@ -476,6 +549,27 @@ class Scratch3Tello {
 
     agz () {
         return this.state.agz;
+    }
+
+    get TILT_DIRECTION_MENU () {
+        return [
+            {
+                text: message.flip_front[this.locale],
+                value: FilpDirection.FRONT
+            },
+            {
+                text: message.flip_back[this.locale],
+                value: FilpDirection.BACK
+            },
+            {
+                text: message.flip_left[this.locale],
+                value: FilpDirection.LEFT
+            },
+            {
+                text: message.flip_right[this.locale],
+                value: FilpDirection.RIGHT
+            }
+        ];
     }
 }
 module.exports = Scratch3Tello;
